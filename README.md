@@ -2,7 +2,7 @@
 
 <h3 align="center">Rick and Morty</h3>
   <p align="center">
-    This project was meant to learn and practise React.js (Next.js), I think I covered all of the basics and also some of the advanced functionalities.
+    This project was meant to learn and practise React.js (Next.js), I think I covered all of the basics and also some of the advanced functionalities. In components folder I also practised some of the Jest Unit tests.
   </p>
 </div>
 
