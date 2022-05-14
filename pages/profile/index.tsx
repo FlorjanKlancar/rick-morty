@@ -10,9 +10,6 @@ import * as Yup from "yup";
 import {userProfileModel} from "../../model/userProfileModel";
 import {Button, FloatingLabel, Form} from "react-bootstrap";
 import {profileActions} from "../../store/profile-slice";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faMoon} from "@fortawesome/free-regular-svg-icons";
-import {faSun} from "@fortawesome/free-regular-svg-icons";
 import axios from "axios";
 import {useRouter} from "next/router";
 import {notificationActions} from "../../store/notification-slice";
@@ -59,10 +56,6 @@ function Profile() {
     validationSchema: profileSchema,
     onSubmit: submitHandler,
   });
-
-  function themeHandler() {
-    dispatch(profileActions.toggleTheme(!profile.isDarkTheme));
-  }
 
   async function submitHandler(submittedProfileData: any) {
     try {

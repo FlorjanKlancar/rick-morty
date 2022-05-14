@@ -12,11 +12,9 @@ import styles from "./NavMenu.module.css";
 import {authActions} from "../store/auth-slice";
 import NavMenuDropdown from "./NavMenuDropdown";
 import {profileActions} from "../store/profile-slice";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faMoon} from "@fortawesome/free-regular-svg-icons";
-import {faSun} from "@fortawesome/free-regular-svg-icons";
 import {doc, getDoc, updateDoc} from "firebase/firestore";
 import {db} from "../firebase";
+import {SunIcon, MoonIcon} from "@heroicons/react/outline";
 
 const NavMenu = () => {
   const dispatch = useDispatch();
@@ -105,12 +103,18 @@ const NavMenu = () => {
             <div>
               <button
                 className={`${
-                  profile.isDarkTheme ? "bg-gray-600" : "bg-yellow-200"
-                } rounded-full py-2 px-2.5 `}
+                  profile.isDarkTheme
+                    ? "bg-gray-600 text-slate-800 hover:bg-gray-500"
+                    : "bg-gray-200 hover:bg-gray-400 text-gray-500 "
+                } rounded-full py-2 px-2 mt-1 hover:text-white`}
                 onClick={themeHandler}
                 type="button"
               >
-                <FontAwesomeIcon icon={profile.isDarkTheme ? faMoon : faSun} />
+                {profile.isDarkTheme ? (
+                  <SunIcon className="h-5 w-5 " />
+                ) : (
+                  <MoonIcon className="h-5 w-5 " />
+                )}
               </button>
             </div>
           </div>
