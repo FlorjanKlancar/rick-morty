@@ -1,6 +1,6 @@
-import { db } from "../firebase/index";
-import { doc, getDoc, setDoc } from "firebase/firestore";
-import { profileActions } from "./profile-slice";
+import {db} from "../firebase/index";
+import {doc, getDoc, setDoc} from "firebase/firestore";
+import {profileActions} from "./profile-slice";
 
 export const getUserProfile = async (userLocalId, userResponse) => {
   const docRef = doc(db, "users", userLocalId);

@@ -1,6 +1,6 @@
-import { FilterGroupConfig } from "../model/filterModel";
-import { RMItem } from "../model/RMItem";
-import { ParsedUrlQuery } from 'querystring';
+import {FilterGroupConfig} from "../model/filterModel";
+import {RMItem} from "../model/RMItem";
+import {ParsedUrlQuery} from "querystring";
 
 export const FILTER_CONFIG_COMPARISON_COUNT = "comparison.count";
 export const FILTER_CONFIG_EXACT = "exact";
@@ -8,9 +8,12 @@ interface FilterValues {
   [key: string]: string[];
 }
 
-type Item = { [prop: string]: any };
+type Item = {[prop: string]: any};
 
-export function setupFilterValues(query: ParsedUrlQuery, withKeyword: boolean = true) {
+export function setupFilterValues(
+  query: ParsedUrlQuery,
+  withKeyword: boolean = true
+) {
   let filterValues: FilterValues = {};
   for (let key in query) {
     if (key.includes("filter.") && typeof key === "string") {
@@ -49,7 +52,7 @@ export default function filter(
 
   return allItems.filter((item: Item) => {
     //allItems = (ie. locations, characters, episodes)
-    let itemFilteredByKey: { [key: string]: boolean } = {};
+    let itemFilteredByKey: {[key: string]: boolean} = {};
 
     for (const key in filterValues) {
       let operatorType =
@@ -90,7 +93,6 @@ function greaterThan(criteria: string, filterKeyCount: number) {
   let operatorValue = +criteria.split(">")[1];
   if (operator === ">") {
     if (filterKeyCount > operatorValue) {
-      // console.log("filterKeyCount greater than", filterKeyCount);
       return true;
     }
   }
@@ -103,6 +105,4 @@ function range(criteria: string, filterKeyCount: number) {
   let min = +criteriaArray[0];
   let max = +criteriaArray[1];
   return filterKeyCount >= min && filterKeyCount <= max;
-
-
 }

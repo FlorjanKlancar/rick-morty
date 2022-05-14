@@ -36,6 +36,7 @@ const NavMenu = () => {
     const docRef = doc(db, "users", auth.localId);
 
     const docSnap = await getDoc(docRef);
+
     if (docSnap.exists()) {
       await updateDoc(docRef, {
         isDarkTheme: !profile.isDarkTheme,

@@ -16,7 +16,6 @@ const profileSlice = createSlice({
       state.userEmail = action.payload.userEmail;
       state.avatar = action.payload.avatar;
       state.isDarkTheme = action.payload.isDarkTheme;
-      localStorage.setItem("isDarkTheme", action.payload.isDarkTheme);
     },
     removeProfile(state) {
       state.displayName = "";
@@ -26,6 +25,7 @@ const profileSlice = createSlice({
     },
     toggleTheme(state, action) {
       state.isDarkTheme = action.payload;
+      localStorage.setItem("isDarkTheme", action.payload.isDarkTheme);
     },
   },
 });
