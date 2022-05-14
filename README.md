@@ -75,7 +75,7 @@ In this project you can search, filter, sort all of listed pages. For this proje
 
 After you are logged in you are able to
 * Save changed theme
-* Change your users avatar
+* Change your users avatar, display name, password
 * Edit or delete Character, Location or Episode page
 
 <p align="right">(<a href="#top">back to top</a>)</p>
