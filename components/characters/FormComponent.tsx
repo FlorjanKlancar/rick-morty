@@ -1,10 +1,10 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Link from "next/link";
-import { useFormik } from "formik";
+import {useFormik} from "formik";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import * as Yup from "yup";
-import { CharactersItem } from "../../model/charactersModel";
+import {CharactersItem} from "../../model/charactersModel";
 
 type FormComponentProps = {
   submitHandler: (submittedEpisodeData: CharactersItem) => void;
@@ -15,7 +15,7 @@ interface CharactersItemData extends CharactersItem {
   locationName: string;
 }
 
-function FormComponent({ submitHandler, initialData }: FormComponentProps) {
+function FormComponent({submitHandler, initialData}: FormComponentProps) {
   const charactersSchema = Yup.object({
     name: Yup.string().required("Name field is required."),
     status: Yup.string().required("Status is required."),
@@ -51,7 +51,7 @@ function FormComponent({ submitHandler, initialData }: FormComponentProps) {
 
   function submitFunction(submittedEpisodeData: CharactersItemData) {
     submittedEpisodeData.id = initialData.id;
-    submittedEpisodeData.location = { name: submittedEpisodeData.locationName };
+    submittedEpisodeData.location = {name: submittedEpisodeData.locationName};
     submitHandler(submittedEpisodeData);
   }
 
@@ -77,7 +77,7 @@ function FormComponent({ submitHandler, initialData }: FormComponentProps) {
 
         <div className="pb-2 flex flex-col sm:flex-row justify-around">
           {["Alive", "Dead", "unknown"].map((type) => (
-            <div>
+            <div key={type}>
               <Form.Check
                 data-testid={"status_" + type}
                 key={type}
@@ -99,7 +99,7 @@ function FormComponent({ submitHandler, initialData }: FormComponentProps) {
             style={
               formik.touched.status
                 ? formik.errors.status
-                  ? { display: "block" }
+                  ? {display: "block"}
                   : {}
                 : {}
             }

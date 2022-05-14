@@ -1,17 +1,17 @@
-import { useState, useEffect } from "react";
+import {useState, useEffect} from "react";
 import axios from "axios";
 import Router from "next/router";
 import EpisodeFormComponent from "../../../../components/episodes/FormComponent";
 import Wrapper from "../../../../components/Wrapper";
 import moment from "moment";
-import { EditEpisodeProps, EpisodeItem } from "../../../../model/episodeModel";
-import { GetServerSidePropsContext } from "next/types";
+import {EditEpisodeProps, EpisodeItem} from "../../../../model/episodeModel";
+import {GetServerSidePropsContext} from "next/types";
 import EditSkeleton from "../../../../components/skeletons/EditSkeleton";
 import episodesRepo from "../../../../utils/episode-repo";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../../model/storeModel";
+import {useSelector} from "react-redux";
+import {RootState} from "../../../../model/storeModel";
 
-export default function EditEpisode({ id: idFromUrl }: EditEpisodeProps) {
+export default function EditEpisode({id: idFromUrl}: EditEpisodeProps) {
   const [episodeObj, setEpisodeObj] = useState<EpisodeItem>();
   const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
 
@@ -50,8 +50,9 @@ export default function EditEpisode({ id: idFromUrl }: EditEpisodeProps) {
   useEffect(() => {
     if (isLoggedIn) {
       getEpisode();
+    } else {
+      Router.push("/episodes");
     }
-    Router.push("/episodes");
   }, []);
 
   return episodeObj ? (
@@ -68,16 +69,14 @@ export default function EditEpisode({ id: idFromUrl }: EditEpisodeProps) {
   );
 }
 
-export async function getServerSideProps({
-  params,
-}: GetServerSidePropsContext) {
+export async function getServerSideProps({params}: GetServerSidePropsContext) {
   const id = params!.id;
 
   let episode = episodesRepo.getById(id);
 
   if (!episode) {
-    return { notFound: true };
+    return {notFound: true};
   }
 
-  return { props: params || {} };
+  return {props: params || {}};
 }

@@ -1,30 +1,30 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import { FilterModel, FilterGroupConfig } from "../model/filterModel";
+import React, {useEffect, useState} from "react";
+import {useRouter} from "next/router";
+import {FilterModel, FilterGroupConfig} from "../model/filterModel";
 import FilterPanel from "./FilterPanel";
 import SortComponent from "./SortComponent";
 import Searchbar from "./Searchbar";
 import Pagination from "./Pagination";
-import { QueryParams } from "../model/queryParams";
+import {QueryParams} from "../model/queryParams";
 import FilterPanelMobile from "./mobile/FilterPanelMobile";
-import { emptyPagination, PaginationModel } from "../model/paginationModel";
-import { ResponseData } from "../model/ResponseDataModel";
-import { RMItem } from "../model/RMItem";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../model/storeModel";
-import { filterActions } from "../store/filter-slice";
-import { ParsedUrlQuery } from "querystring";
-import { setupFilterValues } from "../utils/sidebarFilter";
+import {emptyPagination, PaginationModel} from "../model/paginationModel";
+import {ResponseData} from "../model/ResponseDataModel";
+import {RMItem} from "../model/RMItem";
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "../model/storeModel";
+import {filterActions} from "../store/filter-slice";
+import {ParsedUrlQuery} from "querystring";
+import {setupFilterValues} from "../utils/sidebarFilter";
 import Link from "next/link";
-import { Button } from "react-bootstrap";
-import { paginationActions } from "../store/pagination-slice";
+import {Button} from "react-bootstrap";
+import {paginationActions} from "../store/pagination-slice";
 
 interface PageWrapperProps {
   children: React.ReactNode;
   title: string;
   queryFromUrl: ParsedUrlQuery;
-  addNewItemBtn: { href: string; content: string };
+  addNewItemBtn: {href: string; content: string};
   setData: (data: ResponseData<RMItem>) => void;
   filterConfig: FilterGroupConfig[];
   pagesInfo: PaginationModel;
@@ -53,7 +53,7 @@ const PageWrapper = ({
   function selectFromReduxOrQuery(
     propName: keyof QueryParams,
     valueFromState: any,
-    setAction: (payload: any) => { payload: any; type: string }
+    setAction: (payload: any) => {payload: any; type: string}
   ) {
     if (initialLoad) {
       query.filter = setupFilterValues(queryFromUrl, false);
@@ -111,7 +111,7 @@ const PageWrapper = ({
 
   async function fetchData() {
     const response = await axios.get(`/api/${api}`, {
-      params: { activePage, keyword, sort, filterValue },
+      params: {activePage, keyword, sort, filterValue},
       paramsSerializer: (params) => {
         return `activePage=${params.activePage}&keyword=${
           params.keyword

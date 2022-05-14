@@ -1,15 +1,15 @@
-import { useState } from "react";
+import {useState} from "react";
 import CharacterList from "../../components/characters/CharacterList";
 import CharactersSkeleton from "../../components/skeletons/CharactersSkeleton";
-import { FilterGroupConfig } from "../../model/filterModel";
+import {FilterGroupConfig} from "../../model/filterModel";
 import PageWrapper from "../../components/PageWrapper";
-import { GetServerSideProps } from "next";
-import { ResponseData } from "../../model/ResponseDataModel";
-import { CharactersItem } from "../../model/charactersModel";
-import { emptyPagination } from "../../model/paginationModel";
-import { RMItem } from "../../model/RMItem";
+import {GetServerSideProps} from "next";
+import {ResponseData} from "../../model/ResponseDataModel";
+import {CharactersItem} from "../../model/charactersModel";
+import {emptyPagination} from "../../model/paginationModel";
+import {RMItem} from "../../model/RMItem";
 import Loader from "../../components/Spinner";
-import { ParsedUrlQuery } from "querystring";
+import {ParsedUrlQuery} from "querystring";
 
 export const filterConfig: FilterGroupConfig[] = [
   {
@@ -27,14 +27,14 @@ export const filterConfig: FilterGroupConfig[] = [
   },
 ];
 
-function Characters({ query }: { query: ParsedUrlQuery }) {
+function Characters({query}: {query: ParsedUrlQuery}) {
   const [skeleton, setSkeleton] = useState<Boolean>(true);
   const [loader, setLoader] = useState<Boolean>(false);
   const [data, setData] = useState<ResponseData<CharactersItem>>({
     info: emptyPagination,
     results: [],
   });
-  const { results: chars, info: pagesInfo } = data;
+  const {results: chars, info: pagesInfo} = data;
 
   const addNewItemBtn = {
     href: "/characters/create",
@@ -67,8 +67,8 @@ function Characters({ query }: { query: ParsedUrlQuery }) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  return { props: { query: query || null } };
+export const getServerSideProps: GetServerSideProps = async ({query}) => {
+  return {props: {query: query || null}};
 };
 
 export default Characters;

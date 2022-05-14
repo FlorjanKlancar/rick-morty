@@ -1,19 +1,19 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import LocationFormComponent from "../../../../components/locations/FormComponent";
 import Wrapper from "../../../../components/Wrapper";
 import Router from "next/router";
-import { GetServerSidePropsContext } from "next";
+import {GetServerSidePropsContext} from "next";
 import {
   EditLocationsProps,
   LocationsItem,
 } from "../../../../model/locationsModel";
 import EditSkeleton from "../../../../components/skeletons/EditSkeleton";
 import locationsRepo from "../../../../utils/locations-repo";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../../model/storeModel";
+import {useSelector} from "react-redux";
+import {RootState} from "../../../../model/storeModel";
 
-const EditLocation = ({ id: idFromUrl }: EditLocationsProps) => {
+const EditLocation = ({id: idFromUrl}: EditLocationsProps) => {
   const [location, setLocation] = useState<LocationsItem>();
   const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
 
@@ -51,8 +51,9 @@ const EditLocation = ({ id: idFromUrl }: EditLocationsProps) => {
   useEffect(() => {
     if (isLoggedIn) {
       getLocation();
+    } else {
+      Router.push("/locations");
     }
-    Router.push("/locations");
   }, []);
 
   return location ? (
@@ -71,15 +72,13 @@ const EditLocation = ({ id: idFromUrl }: EditLocationsProps) => {
 
 export default EditLocation;
 
-export async function getServerSideProps({
-  params,
-}: GetServerSidePropsContext) {
+export async function getServerSideProps({params}: GetServerSidePropsContext) {
   const id = params!.id;
 
   let location = locationsRepo.getById(id);
 
   if (!location) {
-    return { notFound: true };
+    return {notFound: true};
   }
-  return { props: params || {} };
+  return {props: params || {}};
 }

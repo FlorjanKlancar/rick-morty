@@ -1,14 +1,14 @@
-import { useState, useEffect } from "react";
+import {useState, useEffect} from "react";
 import axios from "axios";
 import Router from "next/router";
 import FormComponent from "../../../../components/characters/FormComponent";
 import Wrapper from "../../../../components/Wrapper";
-import { CharactersItem } from "../../../../model/charactersModel";
-import { GetServerSidePropsContext } from "next/types";
+import {CharactersItem} from "../../../../model/charactersModel";
+import {GetServerSidePropsContext} from "next/types";
 import EditSkeleton from "../../../../components/skeletons/EditSkeleton";
 import charRepo from "../../../../utils/character-repo";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../../model/storeModel";
+import {useSelector} from "react-redux";
+import {RootState} from "../../../../model/storeModel";
 
 type EditCharacterProps = {
   params: {
@@ -58,8 +58,9 @@ export default function EditCharacter(props: EditCharacterProps) {
   useEffect(() => {
     if (isLoggedIn) {
       getCharacter();
+    } else {
+      Router.push("/characters");
     }
-    Router.push("/characters");
   }, []);
 
   return character ? (
@@ -73,15 +74,13 @@ export default function EditCharacter(props: EditCharacterProps) {
   );
 }
 
-export async function getServerSideProps({
-  params,
-}: GetServerSidePropsContext) {
+export async function getServerSideProps({params}: GetServerSidePropsContext) {
   const id = params!.id;
 
   let character = charRepo.getById(id);
 
   if (!character) {
-    return { notFound: true };
+    return {notFound: true};
   }
-  return { props: { params: params || {} } };
+  return {props: {params: params || {}}};
 }

@@ -30,13 +30,13 @@ function update({
   image,
   favourite,
 }) {
-  const user = characters.find((x) => x.id.toString() === id.toString());
+  const character = characters.find((x) => x.id.toString() === id.toString());
   const index = characters.findIndex((x) => x.id.toString() === id.toString());
 
   characters[index] = {
-    ...user,
+    ...character,
     name: name,
-    location: { ...user.location, name: location },
+    location: location,
     status: status,
     gender: gender,
     species: species,
@@ -46,7 +46,6 @@ function update({
 }
 
 function _delete(id) {
-  // filter out deleted user and save
   characters = characters.filter((x) => x.id.toString() !== id.toString());
 }
 
