@@ -6,7 +6,7 @@
   </p>
 </div>
 
-
+<h3>Vercel Deploy: https://rick-morty-woad.vercel.app/</h3>
 
 <!-- TABLE OF CONTENTS -->
 <details>
