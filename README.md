@@ -63,6 +63,10 @@ If you want to setup this project locally you need to generate new project on Fi
    ```sh
    npm install
    ```
+4. Run project
+```sh
+npm run dev
+```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
