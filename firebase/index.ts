@@ -6,12 +6,12 @@ import {getFirestore} from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyA3pNySVqpLGb_gZK70zmCJjmb9rznt9aE",
-  authDomain: "rick-morty-cac89.firebaseapp.com",
-  projectId: "rick-morty-cac89",
-  storageBucket: "rick-morty-cac89.appspot.com",
-  messagingSenderId: "6921195714",
-  appId: "1:6921195714:web:e5251e4bb11042af3eab5b",
+  apiKey: `${process.env.NEXT_PUBLIC_FIREBASE}`,
+  authDomain: `${process.env.NEXT_PUBLIC_FB_DOMAIN}`,
+  projectId: `${process.env.NEXT_PUBLIC_FB_PROJECT_ID}`,
+  storageBucket: `${process.env.NEXT_PUBLIC_FB_STORAGE}`,
+  messagingSenderId: `${process.env.NEXT_PUBLIC_SENDER}`,
+  appId: `${process.env.NEXT_PUBLIC_APP_ID}`,
 };
 
 // Initialize Firebase
